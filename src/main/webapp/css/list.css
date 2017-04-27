@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.table{table-layout:fixed; text-overflow:ellipsis; margin-top:50px; width:800px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #666666;}
+.bno{width:100px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #999999;}
+.title{width:200px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #999999;}
+.content{width:400px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white;border:1px solid #999999;}
+.writer{width:100px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #999999;}
+.color{background:#ffffff; color:#333333; white-space:nowrap;text-overflow:ellipsis; overflow:hidden; padding: 0 8px}
+.btn{width:150px; height:35px; float:right; overflow:hidden; margin:20px 15px 20px 0; font-size:18px;}
+.delete{color:white; border:0; font-size:15px; background-color:#666666;width:65px; height:30px;}
+.pagination ul li{ list-style:none; padding-left:0px; }

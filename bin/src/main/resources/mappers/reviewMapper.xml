@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="org.zerock.persistence.ReviewDAO">
+	 
+	
+	<select id="read" parameterType="org.zerock.domain.Criteria" resultType="org.zerock.domain.ReviewVO">
+	select * from tbl_review where rno >0 order by rno desc limit #{skip}, #{amount}
+	
+	</select>
+
+	 
+	 <select id="listCount" resultType="int">
+	 
+     	select count(rno) from tbl_review
+	 
+	 </select>
+	 
+	 
+	 <select id="contentRead" resultType="org.zerock.domain.ReviewVO" parameterType="int">
+	 
+	 select * from tbl_review where rno= #{rno}
+	 
+	 </select>
+	 
+	 <insert id="create" parameterType="org.zerock.domain.ReviewVO">
+	 
+	 insert into tbl_review (title, content, gubun, writer, pname)
+	 values(#{title},#{content},#{gubun},#{writer},#{pname})
+	 
+	 </insert>
+	 
+	 
+	 <update id="update" parameterType="org.zerock.domain.ReviewVO">
+	 
+	 update tbl_review set title= #{title}, content=#{content}, gubun=#{gubun},pname=#{pname} where rno= #{rno}; 
+	 </update>
+	 
+	 <delete id="delete" parameterType="int">
+	 
+	 delete from tbl_review where rno=#{rno};
+	 </delete>
+	 
+	 
+	 <select id="getTime" resultType="String">
+	 select now()
+	 </select>
+	 
+	 
+ 
+ </mapper>
+ 
