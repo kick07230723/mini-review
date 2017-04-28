@@ -6,17 +6,58 @@
  
  <mapper namespace="org.zerock.persistence.ReviewDAO">
 	 
+	<sql id="search">
+		<if test="keyword!= null">
+			<choose>
+				<when test='type=="ti"'>
+					and title like concat('%',#{keyword},'%')
+				</when>
+				<when test='type=="co"'>
+					and content like concat('%',#{keyword},'%')
+				</when>
+				<when test='type=="wr"'>
+					and writer like concat('%',#{keyword},'%')
+				</when>
+				<when test='type=="tico"'>
+					and (title like concat('%',#{keyword},'%') and #{keyword} is not null ) 
+					or (content like concat('%',#{keyword},'%') and #{keyword} is not null ) 
+	
+				</when>
+				<when test='type=="tiwr"'>
+					and (title like concat('%',#{keyword},'%') and #{keyword} is not null ) 
+					or (writer like concat('%',#{keyword},'%') and #{keyword} is not null ) 
+				</when>
+			</choose>
+		</if>
+	</sql>
+	
+		 
+ 	<select id="replyRead" parameterType="int" resultType="org.zerock.domain.ReplyVO">
+	
+		select * from tbl_reply where rno= #{rno}
+	
+	</select>
+	
+	
 	
 	<select id="read" parameterType="org.zerock.domain.Criteria" resultType="org.zerock.domain.ReviewVO">
-	select * from tbl_review where rno >0 order by rno desc limit #{skip}, #{amount}
+	
+	select * from tbl_review where rno >0 
+	
+
+	<include refid="search"/>
+	
+	order by rno desc limit #{skip}, #{amount}
 	
 	</select>
 
 	 
-	 <select id="listCount" resultType="int">
+	 <select id="listCount" parameterType="org.zerock.domain.Criteria"  resultType="int">
 	 
-     	select count(rno) from tbl_review
-	 
+     select count(rno) from tbl_review where rno >0 
+     	
+    <include refid="search"/>
+ 
 	 </select>
 	 
 	 
@@ -25,6 +66,8 @@
 	 select * from tbl_review where rno= #{rno}
 	 
 	 </select>
+	 
+	 
 	 
 	 <insert id="create" parameterType="org.zerock.domain.ReviewVO">
 	 
@@ -49,6 +92,8 @@
 	 select now()
 	 </select>
 	 
+
+	
 	 
  
  </mapper>

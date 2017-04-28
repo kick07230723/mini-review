@@ -54,7 +54,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 	@Override
 	public int listCount(Criteria cri) {
-		return sess.selectOne((namespace)+".listCount");
+		return sess.selectOne(namespace+".listCount",cri);
 	}
 	
 	

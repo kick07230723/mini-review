@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
+import org.zerock.domain.ReplyVO;
 import org.zerock.domain.ReviewVO;
+import org.zerock.service.ReplyService;
 import org.zerock.service.ReviewService;
 
 @RequestMapping("/review/*")
@@ -26,14 +28,20 @@ public class ReviewController {
 	@Autowired
 	ReviewService service;
 	
+	@Autowired
+	ReplyService Rservice;
+	
+	
 	@GetMapping("/list")
 	public void getList(@ModelAttribute("cri") Criteria cri,Model model) throws Exception{
 		
 		List<ReviewVO> list= service.listAll(cri);
 		
+		System.out.println("cri!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+cri);
 		model.addAttribute("list",list);
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",new PageMaker(cri, service.listCount(cri)));
+		
 	
 	}
 	
@@ -54,8 +62,10 @@ public class ReviewController {
 		
 		
 		List<ReviewVO> list = service.contentRead(rno);
+		List<ReplyVO> Rlist = Rservice.readReply(rno);
 		
 		model.addAttribute("contentList",list);
+		model.addAttribute("ReplyList",Rlist);
 		
 		
 	}

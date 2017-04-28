@@ -1,0 +1,13 @@
+package org.zerock.service;
+
+import java.util.List;
+
+import org.zerock.domain.ReplyVO;
+
+public interface ReplyService {
+	
+	public List<ReplyVO> readReply(Integer rno)throws Exception; 
+	
+	
+
+}

@@ -26,4 +26,5 @@ public interface ReviewDAO {
 	//count0
 	public int listCount(Criteria cri);
 	
+	
 }

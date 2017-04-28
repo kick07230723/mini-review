@@ -17,6 +17,19 @@
 .modifyBtn{width:150px; height:35px; float:right; overflow:hidden; margin:20px 15px 20px 0; font-size:18px;}
 .replyBtn{width:150px; height:35px; float:right; overflow:hidden; margin:20px 15px 20px 0; font-size:18px;}
 	
+	
+.retable{margin-top:50px; width:603px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #666666;}
+.retitle{width:200px; background:#797980; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #999999;}
+.recontent{width:200px; background:#797980; text-align: center; height:60px; font-size:18px; color:white;border:1px solid #999999;}
+.rewriter{width:200px; background:#797980; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #999999;}
+.color{width:400px; background:#ffffff; color:#333333; }
+
+
+.retables{margin-top:50px; width:603px; background:#ff3232; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #666666;}
+.rewriters{width:100px; background:#343840; text-align: center; height:35px; font-size:18px; color:white; border:1px solid #999999;}
+.color{width:500px; background:#ffffff; color:#333333; }
+
+	
 </style>
 
 <body>
@@ -66,10 +79,45 @@
 			</tr>
 		</table>
 		 </c:forEach>
-		<input type="submit" value="수정"  class="modifyBtn">
+		<input type="submit" value="수정" style="margin-bottom:50px;"class="modifyBtn">
 	    </form>
 	    
-<%-- 	  
+	    
+	    <!-- 댓글 목록 ///////////////////////////////// -->
+	    
+	    <table class="retables" cellpadding="0" cellspacing="0" class="table">
+		    <c:forEach items="${ReplyList} " var="Rlist">
+				<tr>
+					<td class="rewriters color">${Rlist.content}</td>
+					<td class="rewriters">${Rlist.writer}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	    
+	    
+	    <!-- 댓글 쓰기 ///////////////////////////////// -->
+	    <h2 style="text-align: center; font-size: 30px;">댓글 달기</h2>
+	    <table class="retable" cellpadding="0" cellspacing="0" class="table">
+			<tr>
+				<td class="rewriter">글쓴이</td>
+				<td ><input class="rewriter color" type='text'></td>
+			</tr>
+			<tr>
+<%-- <c:forEach items="${list} var="list"> --%>
+	 		<tr>
+				<td class="recontent">내용</td>
+				<td><input class="recontent color" style="text-overflow: ellipsis;" type='text'></td>
+			</tr>
+<%-- </c:forEach> --%>
+		</table>
+	    	<input type="submit" value="댓글달기"  class="replyBtn">
+	    
+	    
+	    
+	    
+	    
+	    
+	<%-- 	  
 		<form id="reply" method="post">
 		<c:forEach items="${contentList}" var="contentList">
 			<table style="margin-top: 100px;" cellpadding="0" cellspacing="0"
@@ -100,7 +148,8 @@
 			<input type="hidden" name="gord" value="${contentList.gord + 1}">
 			<input type="submit" value="답글등록" class="replyBtn">
 		</c:forEach>
-		</form> --%>
+		</form>
+	--%>
 		
 		<div style="height:100px"></div>
  </div>
